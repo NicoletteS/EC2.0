@@ -15,12 +15,12 @@ public class Individual {
     public double[] ni = new double[GENE_LENGTH];
     public double CROSS_RATE = 0.1*random.nextGaussian()+0.5;
    
-    public Individual( boolean isMultimodal){
-        
+    public Individual(boolean isMultimodal){
         for (int i = 0; i < GENE_LENGTH; i++) 
             ni[i] = random.nextGaussian();
     }
 
+    //Generate random individual
     public void generateIndividual(ContestEvaluation eval) {
         for (int i = 0; i < GENE_LENGTH; i++) {
             double gene = random.nextDouble() * (maxValue - minValue) + minValue;

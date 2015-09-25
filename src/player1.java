@@ -50,28 +50,28 @@ public class player1 implements ContestSubmission {
     }
 
     public void run() {
-
+    		//Start population
             Population pop = new Population(populationSize, isMultimodal, evaluation_);
-
+            
+            //Give evaluation limits = 100000
             Program.EVAL_LIMIT = evaluations_limit_;
+            //Amount of evaluation
             int evals = populationSize+offspringSize;
 
+            //Evolve population. It is a generational algorithm if it is multimodal.
             while (evals <= evaluations_limit_ && offspringSize !=0) {
                 pop = Program.evolvePopulation(pop, offspringSize, evaluation_, isMultimodal, hasStructure, isSeparable);
 
                 if (isMultimodal) {
-
-
                         Population fittestOffspring = new Population(populationSize);
                         
+                        //Get fittest individuals for offspring population
                         Individual[] fittests = pop.getFittestIndividuals(fittestOffspring.size());
                         for (int j = 0; j < fittestOffspring.size(); j++) {
-
                             fittestOffspring.setIndividual(fittests[j], j);
                         }
                         pop = fittestOffspring;
                 }
-
                 offspringSize = Math.min(offspringSize, evaluations_limit_-evals);
                 evals += offspringSize;
             }

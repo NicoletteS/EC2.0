@@ -13,30 +13,6 @@ public class Mutate {
         this.EVAL_DONE = EVAL_DONE;
     }
 
-    public Individual polynomialMutator(Individual ind, double MUTATE_RATE) {
-        for (int i = 0; i < Individual.GENE_LENGTH; i++) {
-            if (random.nextDouble() <= MUTATE_RATE) {
-
-                double u = random.nextDouble();
-                double eps;
-                double n = 2;
-                double deltaN = 1.0;
-
-                if (u < 0.5) {
-                    eps = Math.pow(2 * u, 1 / (n + 1)) - 1;
-                } else {
-                    eps = 1 - Math.pow(2 * (1 - u), 1 / (n + 1));
-                }
-
-
-                double gene = ind.getGene(i) + deltaN * eps;
-                ind.setGene(i, gene);
-            }
-        }
-
-        return ind;
-    }
-
     public Individual uncorrelatedMutator(Individual ind, double MUTATE_RATE, int alpha) {
         for (int i = 0; i < Individual.GENE_LENGTH; i++) {
             if (random.nextDouble() <= MUTATE_RATE) {
