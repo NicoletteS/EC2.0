@@ -58,7 +58,7 @@ public class player1 implements ContestSubmission {
             //Amount of evaluation
             int evals = populationSize+offspringSize;
 
-            //Evolve population. It is a generational algorithm if it is multimodal.
+            //Evolve population. It is a generational algorithm.
             while (evals <= evaluations_limit_ && offspringSize !=0) {
                 pop = Program.evolvePopulation(pop, offspringSize, evaluation_, isMultimodal, hasStructure, isSeparable);
 

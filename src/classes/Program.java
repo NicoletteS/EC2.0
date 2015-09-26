@@ -21,7 +21,7 @@ public class Program {
 
         //Spread all individuals random over landscape
         if (isMultimodal) {
-            MUTATE_RATE = 1.0;
+            MUTATE_RATE = 1;
         }
         
         //New offspring population
@@ -42,12 +42,13 @@ public class Program {
                 } while (parent1 == parent2);
             }
 
-            Crossover crossover = new Crossover( isMultimodal, EVAL_DONE);
+            Crossover crossover = new Crossover(isMultimodal, EVAL_DONE);
             Mutate mutator = new Mutate(pop.size(), EVAL_DONE);
             Individual child;
 
             //If multimodal, use BLX recombination, otherwise use uniformcrossover
             if (isMultimodal) {
+            	//Always choose alpha=0.5 is Blend crossover (chapter 4)
                 child = crossover.BLXCrossover(parent1, parent2, 0.5);
                 //Only do mutation if the random is more than uniformrate
                 if (random.nextDouble() < UNIFORM_RATE) {
