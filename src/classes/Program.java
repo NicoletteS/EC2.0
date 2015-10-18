@@ -11,7 +11,7 @@ public class Program {
     //MutateRate and UniformRate are based on Article: 
     private static double MUTATE_RATE = 0.03;
     private static int POOL = 5;
-    private static double UNIFORM_RATE = 0.8;
+    private static double CROSS_RATE = 0.8;
 
     public static Population evolvePopulation(Population pop, int offspring, ContestEvaluation evaluation, boolean isMultimodal, boolean hasStructure, boolean isSeparable) {
         if (EVAL_DONE == 0) {
@@ -50,9 +50,8 @@ public class Program {
             if (isMultimodal) {
             	//Always choose alpha=0.5 is Blend crossover (chapter 4)
                 child = crossover.BLXCrossover(parent1, parent2, 0.5);
-                //Only do mutation if the random is more than uniformrate
-                if (random.nextDouble() < UNIFORM_RATE) {
-                } else {
+                //Only do mutation if the random is more than crossrate
+                if (random.nextDouble() > CROSS_RATE) {
                     child = mutator.uncorrelatedMutator(child, MUTATE_RATE, 4);
                 }
             } else {

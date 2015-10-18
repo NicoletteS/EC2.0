@@ -62,7 +62,7 @@ public class player1 implements ContestSubmission {
             while (evals <= evaluations_limit_ && offspringSize !=0) {
                 pop = Program.evolvePopulation(pop, offspringSize, evaluation_, isMultimodal, hasStructure, isSeparable);
 
-                if (isMultimodal) {
+  //              if (isMultimodal) {
                         Population fittestOffspring = new Population(populationSize);
                         
                         //Get fittest individuals for offspring population
@@ -71,7 +71,7 @@ public class player1 implements ContestSubmission {
                             fittestOffspring.setIndividual(fittests[j], j);
                         }
                         pop = fittestOffspring;
-                }
+ //               }
                 offspringSize = Math.min(offspringSize, evaluations_limit_-evals);
                 evals += offspringSize;
             }
